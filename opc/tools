@@ -1,0 +1,795 @@
+<?php
+
+
+/*
+#Line #Lineno #Opcode            #Result   #OP1                 #OP2                    #Extended Value #jmptos #jmpfroms
+0   4    INIT_FCALL_BY_NAME/59     ?0        ?0                   0:'posix_getpwuid'  	;1
+1   4    INIT_FCALL_BY_NAME/59     ?0        ?0                   2:'posix_geteuid'   	;0
+2   4    DO_FCALL_BY_NAME/131      $20=      ?0                   ?0                  	;0
+3   4    SEND_VAR_NO_REF_EX/50     ?80       $20                  ?1                  	;0
+4   4    DO_FCALL_BY_NAME/131      $21=      ?0                   ?0                  	;0
+5   4    FETCH_DIM_R/81            $22=      $21                  4:'name'            	;0
+6   4    IS_NOT_EQUAL/18           #23=      $22                  5:'root'            	;0
+7   4    BOOL_NOT/13               #24=      #23                  ?0                  	;0
+8   4    JMPZ/43                   ?0        #24                  ?10                 	;0	>>10
+9   5    GOTO/253                  ?0        ?11                  ?6                  	;0
+10  7    EXIT/79                   ?0        7:'Please run as root!
+' ?0                  	;0	<<8
+11  9    INIT_FCALL_BY_NAME/59     ?0        ?0                   8:'str_replace'     	;3
+12  9    SEND_VAL_EX/116           ?80       10:'\\'              ?1                  	;0
+13  9    SEND_VAL_EX/116           ?96       11:'/'               ?2                  	;0
+14  9    INIT_FCALL_BY_NAME/59     ?0        ?0                   12:'dirname'        	;1
+15  9    FETCH_DIM_FUNC_ARG/93     $25=      16?0                 14:0                	;1
+16  9    SEND_VAR_EX/66            ?80       $25                  ?1                  	;0
+17  9    DO_FCALL_BY_NAME/131      $26=      ?0                   ?0                  	;0
+18  9    SEND_VAR_NO_REF_EX/50     ?112      $26                  ?3                  	;0
+19  9    DO_FCALL_BY_NAME/131      $27=      ?0                   ?0                  	;0
+20  9    CONCAT/8                  #28=      $27                  15:'/includes/admin.php'	;0
+21  9    INCLUDE_OR_EVAL/73        ?9        #28                  ?0                  	;8
+22  10   ECHO/40                   ?0        16:'
+'               ?0                  	;0
+23  11   INIT_FCALL_BY_NAME/59     ?0        ?0                   17:'count'          	;1
+24  11   SEND_VAR_EX/66            ?80       16?0                 ?1                  	;0
+25  11   DO_FCALL_BY_NAME/131      $30=      ?0                   ?0                  	;0
+26  11   IS_SMALLER/19             #31=      19:1                 $30                 	;0
+27  11   JMPZ/43                   ?0        #31                  ?31                 	;0	>>31
+28  11   FETCH_DIM_R/81            $32=      16?0                 20:1                	;0
+29  11   QM_ASSIGN/22              #33=      $32                  ?0                  	;0
+30  11   JMP/42                    ?0        ?32                  ?0                  	;0	>>32
+31  11   QM_ASSIGN/22              #33=      21:NULL              ?0                  	;0	<<27
+32  11   ASSIGN/38                 ?14       16?1                 #33                 	;0	<<30
+33  12   SWITCH_STRING/188         ?0        16?1                 22:array (
+  'rescue' => 51,
+  'access' => 80,
+  'ports' => 114,
+  'user' => 360,
+  'mysql' => 406,
+  'database' => 410,
+  'migration' => 624,
+  'flush' => 676,
+)	;705
+34  13   CASE/48                   #35=      16?1                 23:'rescue'         	;0	>>36
+35  13   JMPNZ/44                  ?0        #35                  ?51                 	;0	>>51
+36  21   CASE/48                   #35=      16?1                 24:'access'         	;0	>>38	<<34
+37  21   JMPNZ/44                  ?0        #35                  ?80                 	;0	>>80
+38  32   CASE/48                   #35=      16?1                 25:'ports'          	;0	>>40	<<36
+39  32   JMPNZ/44                  ?0        #35                  ?114                	;0	>>114
+40  119  CASE/48                   #35=      16?1                 26:'user'           	;0	>>42	<<38
+41  119  JMPNZ/44                  ?0        #35                  ?360                	;0	>>360
+42  143  CASE/48                   #35=      16?1                 27:'mysql'          	;0	>>44	<<40
+43  143  JMPNZ/44                  ?0        #35                  ?406                	;0	>>406
+44  147  CASE/48                   #35=      16?1                 28:'database'       	;0	>>46	<<42
+45  147  JMPNZ/44                  ?0        #35                  ?410                	;0	>>410
+46  219  CASE/48                   #35=      16?1                 29:'migration'      	;0	>>48	<<44
+47  219  JMPNZ/44                  ?0        #35                  ?624                	;0	>>624
+48  245  CASE/48                   #35=      16?1                 30:'flush'          	;0	>>50	<<46
+49  245  JMPNZ/44                  ?0        #35                  ?676                	;0	>>676
+50  245  JMP/42                    ?0        ?705                 ?0                  	;0	>>705	<<48
+51  14   INIT_METHOD_CALL/112      ?0        16?2                 31:'query'          	;1	<<35
+52  14   SEND_VAL_EX/116           ?80       33:'DELETE FROM `access_codes` WHERE `code` = \'rescue\';' ?1                  	;0
+53  14   DO_FCALL/60               ?16       ?0                   ?0                  	;0
+54  15   INIT_METHOD_CALL/112      ?0        16?2                 34:'query'          	;1
+55  15   SEND_VAL_EX/116           ?80       36:'INSERT INTO `access_codes`(`code`, `type`, `enabled`, `groups`) VALUES(\'rescue\', 0, 1, \'[1]\');' ?1                  	;0
+56  15   DO_FCALL/60               ?17       ?0                   ?0                  	;0
+57  16   ECHO/40                   ?0        37:'A rescue access code has been created.
+Please ensure you delete this after you\'re done with it.
+' ?0                  	;0
+58  17   FETCH_CONSTANT/99         #39=      ?0                   41:'SERVER_ID'      	;16
+59  17   FETCH_STATIC_PROP_R/173   $38=      38:'rServers'        39:'XUI'            	;0
+60  17   FETCH_DIM_R/81            $40=      $38                  #39                 	;0
+61  17   FETCH_DIM_R/81            $41=      $40                  44:'server_ip'      	;0
+62  17   CONCAT/8                  #42=      45:'Access: http://' $41                 	;0
+63  17   CONCAT/8                  #43=      #42                  46:':'              	;0
+64  17   FETCH_CONSTANT/99         #45=      ?0                   50:'SERVER_ID'      	;16
+65  17   FETCH_STATIC_PROP_R/173   $44=      47:'rServers'        48:'XUI'            	;0
+66  17   FETCH_DIM_R/81            $46=      $44                  #45                 	;0
+67  17   FETCH_DIM_R/81            $47=      $46                  53:'http_broadcast_port'	;0
+68  17   CONCAT/8                  #48=      #43                  $47                 	;0
+69  17   CONCAT/8                  #49=      #48                  54:'/rescue/
+
+'     	;0
+70  17   ECHO/40                   ?0        #49                  ?0                  	;0
+71  18   INIT_FCALL_BY_NAME/59     ?0        ?0                   55:'D670A8140995cd6f'	;0
+72  18   DO_FCALL_BY_NAME/131      ?30       ?0                   ?0                  	;0
+73  19   INIT_FCALL_BY_NAME/59     ?0        ?0                   57:'shell_exec'     	;1
+74  19   FETCH_CONSTANT/99         #51=      ?0                   59:'XUI_HOME'       	;16
+75  19   CONCAT/8                  #52=      62:'sudo '           #51                 	;0
+76  19   CONCAT/8                  #53=      #52                  63:'service reload 2>/dev/null'	;0
+77  19   SEND_VAL_EX/116           ?80       #53                  ?1                  	;0
+78  19   DO_FCALL_BY_NAME/131      ?34       ?0                   ?0                  	;0
+79  20   GOTO/253                  ?0        ?715                 ?64                 	;0
+80  22   ECHO/40                   ?0        65:'Generating access code configuration...
+
+' ?0                  	;0	<<37
+81  23   INIT_FCALL_BY_NAME/59     ?0        ?0                   66:'d670A8140995CD6F'	;0
+82  23   DO_FCALL_BY_NAME/131      ?35       ?0                   ?0                  	;0
+83  24   INIT_FCALL_BY_NAME/59     ?0        ?0                   68:'shell_exec'     	;1
+84  24   FETCH_CONSTANT/99         #56=      ?0                   70:'XUI_HOME'       	;16
+85  24   CONCAT/8                  #57=      73:'sudo '           #56                 	;0
+86  24   CONCAT/8                  #58=      #57                  74:'service reload 2>/dev/null'	;0
+87  24   SEND_VAL_EX/116           ?80       #58                  ?1                  	;0
+88  24   DO_FCALL_BY_NAME/131      ?39       ?0                   ?0                  	;0
+89  25   INIT_FCALL_BY_NAME/59     ?0        ?0                   75:'eFaDb87D8c867176'	;1
+90  25   SEND_VAL_EX/116           ?80       77:0                 ?1                  	;0
+91  25   DO_FCALL_BY_NAME/131      $60=      ?0                   ?0                  	;0
+92  25   FE_RESET_R/77             $61=      $60                  ?111                	;0
+93  25   FE_FETCH_R/78             ?0        $61                  16?3                	;111	>>111	<<110
+94  26   FETCH_CONSTANT/99         #63=      ?0                   81:'SERVER_ID'      	;16
+95  26   FETCH_STATIC_PROP_R/173   $62=      78:'rServers'        79:'XUI'            	;0
+96  26   FETCH_DIM_R/81            $64=      $62                  #63                 	;0
+97  26   FETCH_DIM_R/81            $65=      $64                  84:'server_ip'      	;0
+98  26   CONCAT/8                  #66=      85:'http://'         $65                 	;0
+99  26   CONCAT/8                  #67=      #66                  86:':'              	;0
+100 26   FETCH_CONSTANT/99         #69=      ?0                   90:'SERVER_ID'      	;16
+101 26   FETCH_STATIC_PROP_R/173   $68=      87:'rServers'        88:'XUI'            	;0
+102 26   FETCH_DIM_R/81            $70=      $68                  #69                 	;0
+103 26   FETCH_DIM_R/81            $71=      $70                  93:'http_broadcast_port'	;0
+104 26   CONCAT/8                  #72=      #67                  $71                 	;0
+105 26   CONCAT/8                  #73=      #72                  94:'/'              	;0
+106 26   FETCH_DIM_R/81            $74=      16?3                 95:'code'           	;0
+107 26   CONCAT/8                  #75=      #73                  $74                 	;0
+108 26   CONCAT/8                  #76=      #75                  96:'/
+'             	;0
+109 26   ECHO/40                   ?0        #76                  ?0                  	;0
+110 27   JMP/42                    ?0        ?93                  ?0                  	;0	>>93
+111 27   FE_FREE/127               ?0        $61                  ?0                  	;0	<<92
+112 30   ECHO/40                   ?0        97:'
+'               ?0                  	;0
+113 31   GOTO/253                  ?0        ?715                 ?98                 	;0
+114 33   GOTO/253                  ?0        ?142                 ?99                 	;0	<<39
+115 35   GOTO/253                  ?0        ?715                 ?100                	;0
+116 36   GOTO/253                  ?0        ?360                 ?101                	;0
+117 38   INIT_FCALL_BY_NAME/59     ?0        ?0                   102:'implode'       	;2
+118 38   SEND_VAL_EX/116           ?80       104:', '             ?1                  	;0
+119 38   FETCH_DIM_FUNC_ARG/93     $77=      16?4                 105:'http'          	;2
+120 38   SEND_VAR_EX/66            ?96       $77                  ?2                  	;0
+121 38   DO_FCALL_BY_NAME/131      $78=      ?0                   ?0                  	;0
+122 38   CONCAT/8                  #79=      106:'HTTP Ports: '   $78                 	;0
+123 38   CONCAT/8                  #80=      #79                  107:'
+'             	;0
+124 38   ECHO/40                   ?0        #80                  ?0                  	;0
+125 40   INIT_FCALL_BY_NAME/59     ?0        ?0                   108:'count'         	;1
+126 40   FETCH_DIM_FUNC_ARG/93     $81=      16?4                 110:'https'         	;1
+127 40   SEND_VAR_EX/66            ?80       $81                  ?1                  	;0
+128 40   DO_FCALL_BY_NAME/131      $82=      ?0                   ?0                  	;0
+129 40   IS_SMALLER/19             #83=      111:0                $82                 	;0
+130 40   BOOL_NOT/13               #84=      #83                  ?0                  	;0
+131 40   JMPZ/43                   ?0        #84                  ?133                	;0	>>133
+132 41   GOTO/253                  ?0        ?141                 ?112                	;0
+133 43   INIT_FCALL_BY_NAME/59     ?0        ?0                   113:'implode'       	;2	<<131
+134 43   SEND_VAL_EX/116           ?80       115:', '             ?1                  	;0
+135 43   FETCH_DIM_FUNC_ARG/93     $85=      16?4                 116:'https'         	;2
+136 43   SEND_VAR_EX/66            ?96       $85                  ?2                  	;0
+137 43   DO_FCALL_BY_NAME/131      $86=      ?0                   ?0                  	;0
+138 43   CONCAT/8                  #87=      117:'SSL Ports: '    $86                 	;0
+139 43   CONCAT/8                  #88=      #87                  118:'
+'             	;0
+140 43   ECHO/40                   ?0        #88                  ?0                  	;0
+141 45   GOTO/253                  ?0        ?345                 ?119                	;0
+142 47   ECHO/40                   ?0        120:'Generating port configuration...
+
+' ?0                  	;0
+143 48   INIT_FCALL_BY_NAME/59     ?0        ?0                   121:'array_unique'  	;1
+144 48   INIT_FCALL_BY_NAME/59     ?0        ?0                   123:'array_merge'   	;2
+145 48   FETCH_CONSTANT/99         #90=      ?0                   128:'SERVER_ID'     	;16
+146 48   FETCH_STATIC_PROP_R/173   $89=      125:'rServers'       126:'XUI'           	;0
+147 48   FETCH_DIM_R/81            $91=      $89                  #90                 	;0
+148 48   FETCH_DIM_R/81            $92=      $91                  131:'http_broadcast_port'	;0
+149 48   INIT_ARRAY/71             #93=      $92                  ?0                  	;4
+150 48   SEND_VAL_EX/116           ?80       #93                  ?1                  	;0
+151 48   INIT_FCALL_BY_NAME/59     ?0        ?0                   132:'explode'       	;2
+152 48   SEND_VAL_EX/116           ?80       134:','              ?1                  	;0
+153 48   FETCH_CONSTANT/99         #95=      ?0                   138:'SERVER_ID'     	;16
+154 48   FETCH_STATIC_PROP_FUNC_ARG/177 $94=      135:'rServers'       136:'XUI'           	;2
+155 48   FETCH_DIM_FUNC_ARG/93     $96=      $94                  #95                 	;2
+156 48   FETCH_DIM_FUNC_ARG/93     $97=      $96                  141:'http_ports_add'	;2
+157 48   SEND_VAR_EX/66            ?96       $97                  ?2                  	;0
+158 48   DO_FCALL_BY_NAME/131      $98=      ?0                   ?0                  	;0
+159 48   JMP_SET/152               #99=      $98                  ?161                	;0
+160 48   QM_ASSIGN/22              #99=      142:array (
+)        ?0                  	;0
+161 48   SEND_VAL_EX/116           ?96       #99                  ?2                  	;0
+162 48   DO_FCALL_BY_NAME/131      $100=     ?0                   ?0                  	;0
+163 48   SEND_VAR_NO_REF_EX/50     ?80       $100                 ?1                  	;0
+164 48   DO_FCALL_BY_NAME/131      $101=     ?0                   ?0                  	;0
+165 48   INIT_ARRAY/71             #102=     $101                 143:'http'          	;14
+166 48   INIT_FCALL_BY_NAME/59     ?0        ?0                   144:'array_unique'  	;1
+167 48   INIT_FCALL_BY_NAME/59     ?0        ?0                   146:'array_merge'   	;2
+168 48   FETCH_CONSTANT/99         #104=     ?0                   151:'SERVER_ID'     	;16
+169 48   FETCH_STATIC_PROP_R/173   $103=     148:'rServers'       149:'XUI'           	;0
+170 48   FETCH_DIM_R/81            $105=     $103                 #104                	;0
+171 48   FETCH_DIM_R/81            $106=     $105                 154:'https_broadcast_port'	;0
+172 48   INIT_ARRAY/71             #107=     $106                 ?0                  	;4
+173 48   SEND_VAL_EX/116           ?80       #107                 ?1                  	;0
+174 48   INIT_FCALL_BY_NAME/59     ?0        ?0                   155:'explode'       	;2
+175 48   SEND_VAL_EX/116           ?80       157:','              ?1                  	;0
+176 48   FETCH_CONSTANT/99         #109=     ?0                   161:'SERVER_ID'     	;16
+177 48   FETCH_STATIC_PROP_FUNC_ARG/177 $108=     158:'rServers'       159:'XUI'           	;2
+178 48   FETCH_DIM_FUNC_ARG/93     $110=     $108                 #109                	;2
+179 48   FETCH_DIM_FUNC_ARG/93     $111=     $110                 164:'https_ports_add'	;2
+180 48   SEND_VAR_EX/66            ?96       $111                 ?2                  	;0
+181 48   DO_FCALL_BY_NAME/131      $112=     ?0                   ?0                  	;0
+182 48   JMP_SET/152               #113=     $112                 ?184                	;0
+183 48   QM_ASSIGN/22              #113=     165:array (
+)        ?0                  	;0
+184 48   SEND_VAL_EX/116           ?96       #113                 ?2                  	;0
+185 48   DO_FCALL_BY_NAME/131      $114=     ?0                   ?0                  	;0
+186 48   SEND_VAR_NO_REF_EX/50     ?80       $114                 ?1                  	;0
+187 48   DO_FCALL_BY_NAME/131      $115=     ?0                   ?0                  	;0
+188 48   ADD_ARRAY_ELEMENT/72      #102=     $115                 166:'https'         	;0
+189 48   FETCH_CONSTANT/99         #117=     ?0                   170:'SERVER_ID'     	;16
+190 48   FETCH_STATIC_PROP_R/173   $116=     167:'rServers'       168:'XUI'           	;0
+191 48   FETCH_DIM_R/81            $118=     $116                 #117                	;0
+192 48   FETCH_DIM_R/81            $119=     $118                 173:'rtmp_port'     	;0
+193 48   ADD_ARRAY_ELEMENT/72      #102=     $119                 174:'rtmp'          	;0
+194 48   ASSIGN/38                 ?100      16?4                 #102                	;0
+195 49   FE_RESET_R/77             $121=     16?4                 ?335                	;0
+196 49   FE_FETCH_R/78             #122=     $121                 16?5                	;335	>>335	<<334
+197 49   ASSIGN/38                 ?103      16?6                 #122                	;0
+198 50   NOP/0                     ?0        ?0                   ?0                  	;1
+199 50   GOTO/253                  ?0        ?306                 ?175                	;0
+200 52   NOP/0                     ?0        ?0                   ?0                  	;1
+201 52   GOTO/253                  ?0        ?240                 ?176                	;0
+202 54   ASSIGN/38                 ?104      16?7                 177:array (
+)       	;0
+203 55   FE_RESET_R/77             $125=     16?5                 ?227                	;0
+204 55   FE_FETCH_R/78             ?0        $125                 16?8                	;227	>>227	<<226
+205 56   INIT_FCALL_BY_NAME/59     ?0        ?0                   178:'is_numeric'    	;1
+206 56   SEND_VAR_EX/66            ?80       16?8                 ?1                  	;0
+207 56   DO_FCALL_BY_NAME/131      $126=     ?0                   ?0                  	;0
+208 56   JMPZ_EX/46                #127=     $126                 ?211                	;0	>>211
+209 56   IS_SMALLER_OR_EQUAL/20    #128=     180:80               16?8                	;0
+210 56   BOOL/52                   #127=     #128                 ?0                  	;0
+211 56   JMPZ_EX/46                #127=     #127                 ?214                	;0	>>214	<<208
+212 56   IS_SMALLER_OR_EQUAL/20    #129=     16?8                 181:65535           	;0
+213 56   BOOL/52                   #127=     #129                 ?0                  	;0
+214 56   BOOL_NOT/13               #130=     #127                 ?0                  	;0	<<211
+215 56   JMPZ/43                   ?0        #130                 ?219                	;0	>>219
+216 57   NOP/0                     ?0        ?0                   ?0                  	;1
+217 57   NOP/0                     ?0        ?0                   ?0                  	;1
+218 57   GOTO/253                  ?0        ?226                 ?182                	;0
+219 59   INIT_FCALL_BY_NAME/59     ?0        ?0                   183:'intval'        	;1	<<215
+220 59   SEND_VAR_EX/66            ?80       16?8                 ?1                  	;0
+221 59   DO_FCALL_BY_NAME/131      $132=     ?0                   ?0                  	;0
+222 59   CONCAT/8                  #133=     185:'listen '        $132                	;0
+223 59   CONCAT/8                  #134=     #133                 186:' ssl;'         	;0
+224 59   ASSIGN_DIM/147            ?111      16?7                 ?4397406            	;0
+225 59   OP_DATA/137               ?0        #134                 ?0                  	;0
+226 61   JMP/42                    ?0        ?204                 ?0                  	;0	>>204
+227 61   FE_FREE/127               ?0        $125                 ?0                  	;0	<<203
+228 64   NOP/0                     ?0        ?0                   ?0                  	;1
+229 64   GOTO/253                  ?0        ?230                 ?187                	;0
+230 66   INIT_FCALL_BY_NAME/59     ?0        ?0                   188:'file_put_contents'	;2
+231 66   FETCH_CONSTANT/99         #135=     ?0                   190:'XUI_HOME'      	;16
+232 66   CONCAT/8                  #136=     #135                 193:'bin/nginx/conf/ports/https.conf'	;0
+233 66   SEND_VAL_EX/116           ?80       #136                 ?1                  	;0
+234 66   INIT_FCALL_BY_NAME/59     ?0        ?0                   194:'implode'       	;2
+235 66   SEND_VAL_EX/116           ?80       196:' '              ?1                  	;0
+236 66   SEND_VAR_EX/66            ?96       16?7                 ?2                  	;0
+237 66   DO_FCALL_BY_NAME/131      $137=     ?0                   ?0                  	;0
+238 66   SEND_VAR_NO_REF_EX/50     ?96       $137                 ?2                  	;0
+239 66   DO_FCALL_BY_NAME/131      ?118      ?0                   ?0                  	;0
+240 68   NOP/0                     ?0        ?0                   ?0                  	;1
+241 68   GOTO/253                  ?0        ?304                 ?197                	;0
+242 70   ASSIGN/38                 ?119      16?7                 198:array (
+)       	;0
+243 71   NOP/0                     ?0        ?0                   ?0                  	;1
+244 71   GOTO/253                  ?0        ?245                 ?199                	;0
+245 73   FE_RESET_R/77             $140=     16?5                 ?269                	;0
+246 73   FE_FETCH_R/78             ?0        $140                 16?8                	;269	>>269	<<268
+247 74   INIT_FCALL_BY_NAME/59     ?0        ?0                   200:'is_numeric'    	;1
+248 74   SEND_VAR_EX/66            ?80       16?8                 ?1                  	;0
+249 74   DO_FCALL_BY_NAME/131      $141=     ?0                   ?0                  	;0
+250 74   JMPZ_EX/46                #142=     $141                 ?253                	;0	>>253
+251 74   IS_SMALLER_OR_EQUAL/20    #143=     202:80               16?8                	;0
+252 74   BOOL/52                   #142=     #143                 ?0                  	;0
+253 74   JMPZ_EX/46                #142=     #142                 ?256                	;0	>>256	<<250
+254 74   IS_SMALLER_OR_EQUAL/20    #144=     16?8                 203:65535           	;0
+255 74   BOOL/52                   #142=     #144                 ?0                  	;0
+256 74   BOOL_NOT/13               #145=     #142                 ?0                  	;0	<<253
+257 74   JMPZ/43                   ?0        #145                 ?261                	;0	>>261
+258 75   NOP/0                     ?0        ?0                   ?0                  	;1
+259 75   NOP/0                     ?0        ?0                   ?0                  	;1
+260 75   GOTO/253                  ?0        ?268                 ?204                	;0
+261 77   INIT_FCALL_BY_NAME/59     ?0        ?0                   205:'intval'        	;1	<<257
+262 77   SEND_VAR_EX/66            ?80       16?8                 ?1                  	;0
+263 77   DO_FCALL_BY_NAME/131      $147=     ?0                   ?0                  	;0
+264 77   CONCAT/8                  #148=     207:'listen '        $147                	;0
+265 77   CONCAT/8                  #149=     #148                 208:';'             	;0
+266 77   ASSIGN_DIM/147            ?126      16?7                 ?4397406            	;0
+267 77   OP_DATA/137               ?0        #149                 ?0                  	;0
+268 79   JMP/42                    ?0        ?246                 ?0                  	;0	>>246
+269 79   FE_FREE/127               ?0        $140                 ?0                  	;0	<<245
+270 82   INIT_FCALL_BY_NAME/59     ?0        ?0                   209:'file_put_contents'	;2
+271 82   FETCH_CONSTANT/99         #150=     ?0                   211:'XUI_HOME'      	;16
+272 82   CONCAT/8                  #151=     #150                 214:'bin/nginx/conf/ports/http.conf'	;0
+273 82   SEND_VAL_EX/116           ?80       #151                 ?1                  	;0
+274 82   INIT_FCALL_BY_NAME/59     ?0        ?0                   215:'implode'       	;2
+275 82   SEND_VAL_EX/116           ?80       217:' '              ?1                  	;0
+276 82   SEND_VAR_EX/66            ?96       16?7                 ?2                  	;0
+277 82   DO_FCALL_BY_NAME/131      $152=     ?0                   ?0                  	;0
+278 82   SEND_VAR_NO_REF_EX/50     ?96       $152                 ?2                  	;0
+279 82   DO_FCALL_BY_NAME/131      ?133      ?0                   ?0                  	;0
+280 83   INIT_FCALL_BY_NAME/59     ?0        ?0                   218:'file_put_contents'	;2
+281 83   FETCH_CONSTANT/99         #154=     ?0                   220:'XUI_HOME'      	;16
+282 83   CONCAT/8                  #155=     #154                 223:'bin/nginx_rtmp/conf/live.conf'	;0
+283 83   SEND_VAL_EX/116           ?80       #155                 ?1                  	;0
+284 83   INIT_FCALL_BY_NAME/59     ?0        ?0                   224:'intval'        	;1
+285 83   FETCH_DIM_FUNC_ARG/93     $156=     16?5                 226:0               	;1
+286 83   SEND_VAR_EX/66            ?80       $156                 ?1                  	;0
+287 83   DO_FCALL_BY_NAME/131      $157=     ?0                   ?0                  	;0
+288 83   CONCAT/8                  #158=     227:'on_play http://127.0.0.1:' $157                	;0
+289 83   CONCAT/8                  #159=     #158                 228:'/stream/rtmp; on_publish http://127.0.0.1:'	;0
+290 83   INIT_FCALL_BY_NAME/59     ?0        ?0                   229:'intval'        	;1
+291 83   FETCH_DIM_FUNC_ARG/93     $160=     16?5                 231:0               	;1
+292 83   SEND_VAR_EX/66            ?80       $160                 ?1                  	;0
+293 83   DO_FCALL_BY_NAME/131      $161=     ?0                   ?0                  	;0
+294 83   CONCAT/8                  #162=     #159                 $161                	;0
+295 83   CONCAT/8                  #163=     #162                 232:'/stream/rtmp; on_play_done http://127.0.0.1:'	;0
+296 83   INIT_FCALL_BY_NAME/59     ?0        ?0                   233:'intval'        	;1
+297 83   FETCH_DIM_FUNC_ARG/93     $164=     16?5                 235:0               	;1
+298 83   SEND_VAR_EX/66            ?80       $164                 ?1                  	;0
+299 83   DO_FCALL_BY_NAME/131      $165=     ?0                   ?0                  	;0
+300 83   CONCAT/8                  #166=     #163                 $165                	;0
+301 83   CONCAT/8                  #167=     #166                 236:'/stream/rtmp;' 	;0
+302 83   SEND_VAL_EX/116           ?96       #167                 ?2                  	;0
+303 83   DO_FCALL_BY_NAME/131      ?148      ?0                   ?0                  	;0
+304 85   NOP/0                     ?0        ?0                   ?0                  	;1
+305 85   GOTO/253                  ?0        ?332                 ?237                	;0
+306 87   IS_EQUAL/17               #169=     16?6                 238:'http'          	;0
+307 87   JMPZ/43                   ?0        #169                 ?310                	;0	>>310
+308 88   NOP/0                     ?0        ?0                   ?0                  	;1
+309 88   GOTO/253                  ?0        ?242                 ?239                	;0
+310 90   IS_EQUAL/17               #170=     16?6                 240:'https'         	;0	<<307
+311 90   JMPZ/43                   ?0        #170                 ?314                	;0	>>314
+312 91   NOP/0                     ?0        ?0                   ?0                  	;1
+313 91   GOTO/253                  ?0        ?202                 ?241                	;0
+314 93   IS_EQUAL/17               #171=     16?6                 242:'rtmp'          	;0	<<311
+315 93   BOOL_NOT/13               #172=     #171                 ?0                  	;0
+316 93   JMPZ/43                   ?0        #172                 ?319                	;0	>>319
+317 94   NOP/0                     ?0        ?0                   ?0                  	;1
+318 94   GOTO/253                  ?0        ?330                 ?243                	;0
+319 96   INIT_FCALL_BY_NAME/59     ?0        ?0                   244:'file_put_contents'	;2	<<316
+320 96   FETCH_CONSTANT/99         #173=     ?0                   246:'XUI_HOME'      	;16
+321 96   CONCAT/8                  #174=     #173                 249:'bin/nginx_rtmp/conf/port.conf'	;0
+322 96   SEND_VAL_EX/116           ?80       #174                 ?1                  	;0
+323 96   INIT_FCALL_BY_NAME/59     ?0        ?0                   250:'intval'        	;1
+324 96   SEND_VAR_EX/66            ?80       16?5                 ?1                  	;0
+325 96   DO_FCALL_BY_NAME/131      $175=     ?0                   ?0                  	;0
+326 96   CONCAT/8                  #176=     252:'listen '        $175                	;0
+327 96   CONCAT/8                  #177=     #176                 253:';'             	;0
+328 96   SEND_VAL_EX/116           ?96       #177                 ?2                  	;0
+329 96   DO_FCALL_BY_NAME/131      ?158      ?0                   ?0                  	;0
+330 98   NOP/0                     ?0        ?0                   ?0                  	;1
+331 98   GOTO/253                  ?0        ?200                 ?254                	;0
+332 101  NOP/0                     ?0        ?0                   ?0                  	;1
+333 101  GOTO/253                  ?0        ?334                 ?255                	;0
+334 102  JMP/42                    ?0        ?196                 ?0                  	;0	>>196
+335 102  FE_FREE/127               ?0        $121                 ?0                  	;0	<<195
+336 105  INIT_FCALL_BY_NAME/59     ?0        ?0                   256:'count'         	;1
+337 105  FETCH_DIM_FUNC_ARG/93     $179=     16?4                 258:'http'          	;1
+338 105  SEND_VAR_EX/66            ?80       $179                 ?1                  	;0
+339 105  DO_FCALL_BY_NAME/131      $180=     ?0                   ?0                  	;0
+340 105  IS_SMALLER/19             #181=     259:0                $180                	;0
+341 105  BOOL_NOT/13               #182=     #181                 ?0                  	;0
+342 105  JMPZ/43                   ?0        #182                 ?344                	;0	>>344
+343 106  GOTO/253                  ?0        ?125                 ?260                	;0
+344 108  GOTO/253                  ?0        ?117                 ?261                	;0	<<342
+345 110  ISSET_ISEMPTY_DIM_OBJ/115 #183=     16?4                 262:'http'          	;16777216
+346 110  JMPZ/43                   ?0        #183                 ?348                	;0	>>348
+347 111  GOTO/253                  ?0        ?352                 ?263                	;0
+348 113  FETCH_DIM_R/81            $184=     16?4                 264:'rtmp'          	;0	<<346
+349 113  CONCAT/8                  #185=     265:'RTMP Port: '    $184                	;0
+350 113  CONCAT/8                  #186=     #185                 266:'
+'             	;0
+351 113  ECHO/40                   ?0        #186                 ?0                  	;0
+352 115  INIT_FCALL_BY_NAME/59     ?0        ?0                   267:'shell_exec'    	;1
+353 115  FETCH_CONSTANT/99         #187=     ?0                   269:'XUI_HOME'      	;16
+354 115  CONCAT/8                  #188=     272:'sudo '          #187                	;0
+355 115  CONCAT/8                  #189=     #188                 273:'service reload 2>/dev/null'	;0
+356 115  SEND_VAL_EX/116           ?80       #189                 ?1                  	;0
+357 115  DO_FCALL_BY_NAME/131      ?170      ?0                   ?0                  	;0
+358 116  ECHO/40                   ?0        274:'
+'              ?0                  	;0
+359 117  GOTO/253                  ?0        ?115                 ?275                	;0
+360 120  GOTO/253                  ?0        ?387                 ?276                	;0	<<41
+361 122  ECHO/40                   ?0        277:'Username: rescue
+' ?0                  	;0
+362 123  ROPE_INIT/54              #192=     ?0                   278:'Password: '    	;3
+363 123  ROPE_ADD/55               #192=     #192                 16?9                	;1
+364 123  ROPE_END/56               #191=     #192                 279:'
+
+'            	;2
+365 123  ECHO/40                   ?0        #191                 ?0                  	;0
+366 124  GOTO/253                  ?0        ?715                 ?280                	;0
+367 125  GOTO/253                  ?0        ?406                 ?281                	;0
+368 127  INIT_FCALL_BY_NAME/59     ?0        ?0                   282:'fc34407B2842461B'	;1
+369 127  SEND_VAL_EX/116           ?80       284:10               ?1                  	;0
+370 127  DO_FCALL_BY_NAME/131      $194=     ?0                   ?0                  	;0
+371 127  ASSIGN/38                 ?175      16?9                 $194                	;0
+372 128  INIT_METHOD_CALL/112      ?0        16?2                 285:'query'         	;1
+373 128  SEND_VAL_EX/116           ?80       287:'DELETE FROM `users` WHERE `username` = \'rescue\';' ?1                  	;0
+374 128  DO_FCALL/60               ?176      ?0                   ?0                  	;0
+375 129  INIT_ARRAY/71             #197=     288:'rescue'         289:'username'      	;22
+376 129  ADD_ARRAY_ELEMENT/72      #197=     16?9                 290:'password'      	;0
+377 129  ADD_ARRAY_ELEMENT/72      #197=     291:1                292:'member_group_id'	;0
+378 129  ADD_ARRAY_ELEMENT/72      #197=     293:1                294:'status'        	;0
+379 129  ADD_ARRAY_ELEMENT/72      #197=     295:0                296:'credits'       	;0
+380 129  ASSIGN/38                 ?178      16?10                #197                	;0
+381 130  INIT_STATIC_METHOD_CALL/113 ?0        297:'API'            299:'D3824406Bc4f2A23'	;2
+382 130  SEND_VAR_EX/66            ?80       16?10                ?1                  	;0
+383 130  SEND_VAL_EX/116           ?96       301:true             ?2                  	;0
+384 130  DO_FCALL/60               ?179      ?0                   ?0                  	;0
+385 131  ECHO/40                   ?0        302:'A rescue user has been created.
+Please ensure you delete this after you\'re done with it.
+' ?0                  	;0
+386 132  GOTO/253                  ?0        ?361                 ?303                	;0
+387 134  INIT_FCALL_BY_NAME/59     ?0        ?0                   304:'a752238c4005cbBc'	;1
+388 134  SEND_VAL_EX/116           ?80       306:1                ?1                  	;0
+389 134  DO_FCALL_BY_NAME/131      $200=     ?0                   ?0                  	;0
+390 134  ASSIGN/38                 ?181      16?11                $200                	;0
+391 135  BOOL_NOT/13               #202=     16?11                ?0                  	;0
+392 135  JMPNZ_EX/47               #202=     #202                 ?396                	;0	>>396
+393 135  FETCH_DIM_R/81            $203=     16?11                307:'is_admin'      	;0
+394 135  BOOL_NOT/13               #204=     $203                 ?0                  	;0
+395 135  BOOL/52                   #202=     #204                 ?0                  	;0
+396 135  BOOL_NOT/13               #205=     #202                 ?0                  	;0	<<392
+397 135  JMPZ/43                   ?0        #205                 ?399                	;0	>>399
+398 136  GOTO/253                  ?0        ?405                 ?308                	;0
+399 138  INIT_METHOD_CALL/112      ?0        16?2                 309:'query'         	;1	<<397
+400 138  SEND_VAL_EX/116           ?80       311:'DELETE FROM `users_groups` WHERE `group_id` = 1;' ?1                  	;0
+401 138  DO_FCALL/60               ?186      ?0                   ?0                  	;0
+402 139  INIT_METHOD_CALL/112      ?0        16?2                 312:'query'         	;1
+403 139  SEND_VAL_EX/116           ?80       314:'INSERT INTO `users_groups` (`group_id`, `group_name`, `is_admin`, `is_reseller`, `total_allowed_gen_trials`, `total_allowed_gen_in`, `delete_users`, `allowed_pages`, `can_delete`, `create_sub_resellers`, `create_sub_resellers_price`, `reseller_client_connection_logs`, `can_view_vod`, `allow_download`, `minimum_trial_credits`, `allow_restrictions`, `allow_change_username`, `allow_change_password`, `minimum_username_length`, `minimum_password_length`) VALUES (1, \'Administrators\', 1, 0, 0, \'day\', 0, \'[]\', 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 8, 8);' ?1                  	;0
+404 139  DO_FCALL/60               ?187      ?0                   ?0                  	;0
+405 141  GOTO/253                  ?0        ?368                 ?315                	;0
+406 144  INIT_FCALL_BY_NAME/59     ?0        ?0                   316:'EDA0b738B69cF18f'	;0	<<43
+407 144  DO_FCALL_BY_NAME/131      ?188      ?0                   ?0                  	;0
+408 145  ECHO/40                   ?0        318:'Load balancers have been granted access to MySQL in the system.
+
+' ?0                  	;0
+409 146  GOTO/253                  ?0        ?715                 ?319                	;0
+410 148  GOTO/253                  ?0        ?609                 ?320                	;0	<<45
+411 150  INIT_FCALL_BY_NAME/59     ?0        ?0                   321:'file_put_contents'	;2
+412 150  FETCH_CONSTANT/99         #209=     ?0                   323:'XUI_HOME'      	;16
+413 150  CONCAT/8                  #210=     #209                 326:'bin/daemons.sh'	;0
+414 150  SEND_VAL_EX/116           ?80       #210                 ?1                  	;0
+415 150  SEND_VAR_EX/66            ?96       16?12                ?2                  	;0
+416 150  DO_FCALL_BY_NAME/131      ?191      ?0                   ?0                  	;0
+417 151  INIT_FCALL_BY_NAME/59     ?0        ?0                   327:'file_put_contents'	;2
+418 151  FETCH_CONSTANT/99         #212=     ?0                   329:'XUI_HOME'      	;16
+419 151  CONCAT/8                  #213=     #212                 332:'bin/nginx/conf/balance.conf'	;0
+420 151  SEND_VAL_EX/116           ?80       #213                 ?1                  	;0
+421 151  CONCAT/8                  #214=     16?13                333:'}'             	;0
+422 151  SEND_VAL_EX/116           ?96       #214                 ?2                  	;0
+423 151  DO_FCALL_BY_NAME/131      ?195      ?0                   ?0                  	;0
+424 152  INIT_FCALL_BY_NAME/59     ?0        ?0                   334:'shell_exec'    	;1
+425 152  SEND_VAL_EX/116           ?80       336:'sudo systemctl stop xuione' ?1                  	;0
+426 152  DO_FCALL_BY_NAME/131      ?196      ?0                   ?0                  	;0
+427 153  INIT_FCALL_BY_NAME/59     ?0        ?0                   337:'shell_exec'    	;1
+428 153  SEND_VAL_EX/116           ?80       339:'sudo systemctl start xuione' ?1                  	;0
+429 153  DO_FCALL_BY_NAME/131      ?197      ?0                   ?0                  	;0
+430 154  CONCAT/8                  #218=     340:'Access: http://' 16?14               	;0
+431 154  CONCAT/8                  #219=     #218                 341:'/rescue/
+
+'    	;0
+432 154  ECHO/40                   ?0        #219                 ?0                  	;0
+433 155  GOTO/253                  ?0        ?434                 ?342                	;0
+434 157  ECHO/40                   ?0        343:'Username: rescue
+' ?0                  	;0
+435 158  ROPE_INIT/54              #221=     ?0                   344:'Password: '    	;3
+436 158  ROPE_ADD/55               #221=     #221                 16?9                	;1
+437 158  ROPE_END/56               #220=     #221                 345:'
+
+'            	;2
+438 158  ECHO/40                   ?0        #220                 ?0                  	;0
+439 159  ECHO/40                   ?0        346:'You need to edit the server settings after logging in.
+
+' ?0                  	;0
+440 160  GOTO/253                  ?0        ?715                 ?347                	;0
+441 161  GOTO/253                  ?0        ?624                 ?348                	;0
+442 163  INIT_ARRAY/71             #223=     349:'rescue'         350:'username'      	;22
+443 163  ADD_ARRAY_ELEMENT/72      #223=     16?9                 351:'password'      	;0
+444 163  ADD_ARRAY_ELEMENT/72      #223=     352:1                353:'member_group_id'	;0
+445 163  ADD_ARRAY_ELEMENT/72      #223=     354:1                355:'status'        	;0
+446 163  ADD_ARRAY_ELEMENT/72      #223=     356:0                357:'credits'       	;0
+447 163  ASSIGN/38                 ?204      16?10                #223                	;0
+448 164  INIT_STATIC_METHOD_CALL/113 ?0        358:'API'            360:'d3824406Bc4f2a23'	;2
+449 164  SEND_VAR_EX/66            ?80       16?10                ?1                  	;0
+450 164  SEND_VAL_EX/116           ?96       362:true             ?2                  	;0
+451 164  DO_FCALL/60               ?205      ?0                   ?0                  	;0
+452 165  ECHO/40                   ?0        363:'Blank XUI database has been restored.
+Configuring ports...
+' ?0                  	;0
+453 166  INIT_FCALL_BY_NAME/59     ?0        ?0                   364:'socket_create' 	;3
+454 166  FETCH_CONSTANT/99         #226=     ?0                   366:'AF_INET'       	;16
+455 166  SEND_VAL_EX/116           ?80       #226                 ?1                  	;0
+456 166  FETCH_CONSTANT/99         #227=     ?0                   369:'SOCK_DGRAM'    	;16
+457 166  SEND_VAL_EX/116           ?96       #227                 ?2                  	;0
+458 166  FETCH_CONSTANT/99         #228=     ?0                   372:'SOL_UDP'       	;16
+459 166  SEND_VAL_EX/116           ?112      #228                 ?3                  	;0
+460 166  DO_FCALL_BY_NAME/131      $229=     ?0                   ?0                  	;0
+461 166  ASSIGN/38                 ?210      16?15                $229                	;0
+462 167  INIT_FCALL_BY_NAME/59     ?0        ?0                   375:'socket_connect'	;3
+463 167  SEND_VAR_EX/66            ?80       16?15                ?1                  	;0
+464 167  SEND_VAL_EX/116           ?96       377:'8.8.8.8'        ?2                  	;0
+465 167  SEND_VAL_EX/116           ?112      378:53               ?3                  	;0
+466 167  DO_FCALL_BY_NAME/131      ?211      ?0                   ?0                  	;0
+467 168  GOTO/253                  ?0        ?588                 ?379                	;0
+468 170  INIT_FCALL_BY_NAME/59     ?0        ?0                   380:'shell_exec'    	;1
+469 170  FETCH_CONSTANT/99         #232=     ?0                   382:'XUI_HOME'      	;16
+470 170  CONCAT/8                  #233=     385:'sudo mysql xui < "' #232                	;0
+471 170  CONCAT/8                  #234=     #233                 386:'bin/install/database.sql"'	;0
+472 170  SEND_VAL_EX/116           ?80       #234                 ?1                  	;0
+473 170  DO_FCALL_BY_NAME/131      ?215      ?0                   ?0                  	;0
+474 171  INIT_FCALL_BY_NAME/59     ?0        ?0                   387:'shell_exec'    	;1
+475 171  FETCH_CONSTANT/99         #236=     ?0                   389:'PHP_BIN'       	;16
+476 171  CONCAT/8                  #237=     392:'sudo '          #236                	;0
+477 171  CONCAT/8                  #238=     #237                 393:' '             	;0
+478 171  FETCH_CONSTANT/99         #239=     ?0                   394:'INCLUDES_PATH' 	;16
+479 171  CONCAT/8                  #240=     #238                 #239                	;0
+480 171  CONCAT/8                  #241=     #240                 397:'startup.php'   	;0
+481 171  SEND_VAL_EX/116           ?80       #241                 ?1                  	;0
+482 171  DO_FCALL_BY_NAME/131      ?222      ?0                   ?0                  	;0
+483 172  INIT_FCALL_BY_NAME/59     ?0        ?0                   398:'EdA0B738B69CF18f'	;0
+484 172  DO_FCALL_BY_NAME/131      ?223      ?0                   ?0                  	;0
+485 173  NEW/68                    $244=     400:'Database'       ?96                 	;1
+486 173  SEND_VAL_EX/116           ?80       402:'TKbxeQrBXw2swDNwTh5yrj4jMV4RaLO0' ?1                  	;0
+487 173  DO_FCALL/60               ?225      ?8                   ?0                  	;0
+488 173  ASSIGN/38                 ?226      16?2                 $244                	;0
+489 174  FETCH_STATIC_PROP_W/174   $247=     403:'db'             404:'XUI'           	;0
+490 174  ASSIGN_REF/39             ?228      $247                 16?2                	;0
+491 175  GOTO/253                  ?0        ?492                 ?406                	;0
+492 177  INIT_STATIC_METHOD_CALL/113 ?0        407:'XUI'            409:'init'          	;0
+493 177  DO_FCALL/60               ?229      ?0                   ?0                  	;0
+494 178  FETCH_STATIC_PROP_W/174   $250=     411:'db'             412:'API'           	;0
+495 178  ASSIGN_REF/39             ?231      $250                 16?2                	;0
+496 179  INIT_STATIC_METHOD_CALL/113 ?0        414:'API'            416:'init'          	;0
+497 179  DO_FCALL/60               ?232      ?0                   ?0                  	;0
+498 180  INIT_METHOD_CALL/112      ?0        16?2                 418:'query'         	;1
+499 180  SEND_VAL_EX/116           ?80       420:'INSERT INTO `access_codes`(`code`, `type`, `enabled`, `groups`) VALUES(\'rescue\', 0, 1, \'[1]\');' ?1                  	;0
+500 180  DO_FCALL/60               ?233      ?0                   ?0                  	;0
+501 181  INIT_FCALL_BY_NAME/59     ?0        ?0                   421:'Fc34407b2842461b'	;1
+502 181  SEND_VAL_EX/116           ?80       423:10               ?1                  	;0
+503 181  DO_FCALL_BY_NAME/131      $254=     ?0                   ?0                  	;0
+504 181  ASSIGN/38                 ?235      16?9                 $254                	;0
+505 182  GOTO/253                  ?0        ?442                 ?424                	;0
+506 184  INIT_FCALL_BY_NAME/59     ?0        ?0                   425:'file_put_contents'	;2
+507 184  FETCH_CONSTANT/99         #256=     ?0                   427:'XUI_HOME'      	;16
+508 184  CONCAT/8                  #257=     #256                 430:'bin/nginx/conf/ports/https.conf'	;0
+509 184  SEND_VAL_EX/116           ?80       #257                 ?1                  	;0
+510 184  SEND_VAL_EX/116           ?96       431:'listen 443 ssl;' ?2                  	;0
+511 184  DO_FCALL_BY_NAME/131      ?238      ?0                   ?0                  	;0
+512 185  INIT_FCALL_BY_NAME/59     ?0        ?0                   432:'file_put_contents'	;2
+513 185  FETCH_CONSTANT/99         #259=     ?0                   434:'XUI_HOME'      	;16
+514 185  CONCAT/8                  #260=     #259                 437:'bin/nginx_rtmp/conf/live.conf'	;0
+515 185  SEND_VAL_EX/116           ?80       #260                 ?1                  	;0
+516 185  SEND_VAL_EX/116           ?96       438:'on_play http://127.0.0.1:80/stream/rtmp; on_publish http://127.0.0.1:80/stream/rtmp; on_play_done http://127.0.0.1:80/stream/rtmp;' ?2                  	;0
+517 185  DO_FCALL_BY_NAME/131      ?241      ?0                   ?0                  	;0
+518 186  INIT_FCALL_BY_NAME/59     ?0        ?0                   439:'file_put_contents'	;2
+519 186  FETCH_CONSTANT/99         #262=     ?0                   441:'XUI_HOME'      	;16
+520 186  CONCAT/8                  #263=     #262                 444:'bin/nginx_rtmp/conf/port.conf'	;0
+521 186  SEND_VAL_EX/116           ?80       #263                 ?1                  	;0
+522 186  SEND_VAL_EX/116           ?96       445:'listen 8880;'   ?2                  	;0
+523 186  DO_FCALL_BY_NAME/131      ?244      ?0                   ?0                  	;0
+524 187  ASSIGN/38                 ?245      16?16                446:4               	;0
+525 188  INIT_FCALL_BY_NAME/59     ?0        ?0                   447:'shell_exec'    	;1
+526 188  FETCH_CONSTANT/99         #266=     ?0                   449:'XUI_HOME'      	;16
+527 188  CONCAT/8                  #267=     452:'sudo rm '       #266                	;0
+528 188  CONCAT/8                  #268=     #267                 453:'bin/php/etc/*.conf'	;0
+529 188  SEND_VAL_EX/116           ?80       #268                 ?1                  	;0
+530 188  DO_FCALL_BY_NAME/131      ?249      ?0                   ?0                  	;0
+531 189  GOTO/253                  ?0        ?532                 ?454                	;0
+532 191  ASSIGN/38                 ?250      16?12                455:'#! /bin/bash
+' 	;0
+533 192  ASSIGN/38                 ?251      16?13                456:'upstream php {
+    least_conn;
+'	;0
+534 193  INIT_FCALL_BY_NAME/59     ?0        ?0                   457:'file_get_contents'	;1
+535 193  FETCH_CONSTANT/99         #272=     ?0                   459:'XUI_HOME'      	;16
+536 193  CONCAT/8                  #273=     #272                 462:'bin/php/etc/template'	;0
+537 193  SEND_VAL_EX/116           ?80       #273                 ?1                  	;0
+538 193  DO_FCALL_BY_NAME/131      $274=     ?0                   ?0                  	;0
+539 193  ASSIGN/38                 ?255      16?17                $274                	;0
+540 194  INIT_FCALL_BY_NAME/59     ?0        ?0                   463:'range'         	;2
+541 194  SEND_VAL_EX/116           ?80       465:1                ?1                  	;0
+542 194  SEND_VAR_EX/66            ?96       16?16                ?2                  	;0
+543 194  DO_FCALL_BY_NAME/131      $276=     ?0                   ?0                  	;0
+544 194  FE_RESET_R/77             $277=     $276                 ?586                	;0
+545 194  FE_FETCH_R/78             ?0        $277                 16?18               	;586	>>586	<<585
+546 195  FETCH_CONSTANT/99         #278=     ?0                   466:'XUI_HOME'      	;16
+547 195  CONCAT/8                  #279=     469:'start-stop-daemon --start --quiet --pidfile ' #278                	;0
+548 195  CONCAT/8                  #280=     #279                 470:'bin/php/sockets/'	;0
+549 195  CONCAT/8                  #281=     #280                 16?18               	;0
+550 195  CONCAT/8                  #282=     #281                 471:'.pid --exec '  	;0
+551 195  FETCH_CONSTANT/99         #283=     ?0                   472:'XUI_HOME'      	;16
+552 195  CONCAT/8                  #284=     #282                 #283                	;0
+553 195  CONCAT/8                  #285=     #284                 475:'bin/php/sbin/php-fpm -- --daemonize --fpm-config '	;0
+554 195  FETCH_CONSTANT/99         #286=     ?0                   476:'XUI_HOME'      	;16
+555 195  CONCAT/8                  #287=     #285                 #286                	;0
+556 195  CONCAT/8                  #288=     #287                 479:'bin/php/etc/'  	;0
+557 195  CONCAT/8                  #289=     #288                 16?18               	;0
+558 195  CONCAT/8                  #290=     #289                 480:'.conf
+'        	;0
+559 195  ASSIGN_CONCAT/30          ?271      16?12                #290                	;0
+560 196  FETCH_CONSTANT/99         #292=     ?0                   481:'XUI_HOME'      	;16
+561 196  CONCAT/8                  #293=     484:'    server unix:' #292                	;0
+562 196  CONCAT/8                  #294=     #293                 485:'bin/php/sockets/'	;0
+563 196  CONCAT/8                  #295=     #294                 16?18               	;0
+564 196  CONCAT/8                  #296=     #295                 486:'.sock;
+'       	;0
+565 196  ASSIGN_CONCAT/30          ?277      16?13                #296                	;0
+566 197  INIT_FCALL_BY_NAME/59     ?0        ?0                   487:'file_put_contents'	;2
+567 197  FETCH_CONSTANT/99         #298=     ?0                   489:'XUI_HOME'      	;16
+568 197  CONCAT/8                  #299=     #298                 492:'bin/php/etc/'  	;0
+569 197  CONCAT/8                  #300=     #299                 16?18               	;0
+570 197  CONCAT/8                  #301=     #300                 493:'.conf'         	;0
+571 197  SEND_VAL_EX/116           ?80       #301                 ?1                  	;0
+572 197  INIT_FCALL_BY_NAME/59     ?0        ?0                   494:'str_replace'   	;3
+573 197  SEND_VAL_EX/116           ?80       496:'#PATH#'         ?1                  	;0
+574 197  FETCH_CONSTANT/99         #302=     ?0                   497:'XUI_HOME'      	;16
+575 197  SEND_VAL_EX/116           ?96       #302                 ?2                  	;0
+576 197  INIT_FCALL_BY_NAME/59     ?0        ?0                   500:'str_replace'   	;3
+577 197  SEND_VAL_EX/116           ?80       502:'#ID#'           ?1                  	;0
+578 197  SEND_VAR_EX/66            ?96       16?18                ?2                  	;0
+579 197  SEND_VAR_EX/66            ?112      16?17                ?3                  	;0
+580 197  DO_FCALL_BY_NAME/131      $303=     ?0                   ?0                  	;0
+581 197  SEND_VAR_NO_REF_EX/50     ?112      $303                 ?3                  	;0
+582 197  DO_FCALL_BY_NAME/131      $304=     ?0                   ?0                  	;0
+583 197  SEND_VAR_NO_REF_EX/50     ?96       $304                 ?2                  	;0
+584 197  DO_FCALL_BY_NAME/131      ?285      ?0                   ?0                  	;0
+585 198  JMP/42                    ?0        ?545                 ?0                  	;0	>>545
+586 198  FE_FREE/127               ?0        $277                 ?0                  	;0	<<544
+587 201  GOTO/253                  ?0        ?411                 ?503                	;0
+588 203  INIT_FCALL_BY_NAME/59     ?0        ?0                   504:'socket_getsockname'	;2
+589 203  SEND_VAR_EX/66            ?80       16?15                ?1                  	;0
+590 203  SEND_VAR_EX/66            ?96       16?14                ?2                  	;0
+591 203  DO_FCALL_BY_NAME/131      ?286      ?0                   ?0                  	;0
+592 204  INIT_FCALL_BY_NAME/59     ?0        ?0                   506:'socket_shutdown'	;1
+593 204  SEND_VAR_EX/66            ?80       16?15                ?1                  	;0
+594 204  DO_FCALL_BY_NAME/131      ?287      ?0                   ?0                  	;0
+595 205  INIT_FCALL_BY_NAME/59     ?0        ?0                   508:'socket_close'  	;1
+596 205  SEND_VAR_EX/66            ?80       16?15                ?1                  	;0
+597 205  DO_FCALL_BY_NAME/131      ?288      ?0                   ?0                  	;0
+598 206  INIT_METHOD_CALL/112      ?0        16?2                 510:'query'         	;2
+599 206  SEND_VAL_EX/116           ?80       512:'UPDATE `servers` SET `server_ip` = ? WHERE `id` = 1;' ?1                  	;0
+600 206  SEND_VAR_EX/66            ?96       16?14                ?2                  	;0
+601 206  DO_FCALL/60               ?289      ?0                   ?0                  	;0
+602 207  INIT_FCALL_BY_NAME/59     ?0        ?0                   513:'file_put_contents'	;2
+603 207  FETCH_CONSTANT/99         #310=     ?0                   515:'XUI_HOME'      	;16
+604 207  CONCAT/8                  #311=     #310                 518:'bin/nginx/conf/ports/http.conf'	;0
+605 207  SEND_VAL_EX/116           ?80       #311                 ?1                  	;0
+606 207  SEND_VAL_EX/116           ?96       519:'listen 80;'     ?2                  	;0
+607 207  DO_FCALL_BY_NAME/131      ?292      ?0                   ?0                  	;0
+608 208  GOTO/253                  ?0        ?506                 ?520                	;0
+609 210  INIT_FCALL_BY_NAME/59     ?0        ?0                   521:'file_exists'   	;1
+610 210  FETCH_CONSTANT/99         #313=     ?0                   523:'XUI_HOME'      	;16
+611 210  CONCAT/8                  #314=     #313                 526:'bin/install/database.sql'	;0
+612 210  SEND_VAL_EX/116           ?80       #314                 ?1                  	;0
+613 210  DO_FCALL_BY_NAME/131      $315=     ?0                   ?0                  	;0
+614 210  JMPZ/43                   ?0        $315                 ?616                	;0	>>616
+615 211  GOTO/253                  ?0        ?617                 ?527                	;0
+616 213  EXIT/79                   ?0        528:'FATAL: database.sql file is missing from the installation.' ?0                  	;0	<<614
+617 215  INIT_METHOD_CALL/112      ?0        16?2                 529:'query'         	;1
+618 215  SEND_VAL_EX/116           ?80       531:'DROP DATABASE IF EXISTS `xui`;' ?1                  	;0
+619 215  DO_FCALL/60               ?296      ?0                   ?0                  	;0
+620 216  INIT_METHOD_CALL/112      ?0        16?2                 532:'query'         	;1
+621 216  SEND_VAL_EX/116           ?80       534:'CREATE DATABASE IF NOT EXISTS `xui`;' ?1                  	;0
+622 216  DO_FCALL/60               ?297      ?0                   ?0                  	;0
+623 217  GOTO/253                  ?0        ?468                 ?535                	;0
+624 220  GOTO/253                  ?0        ?637                 ?536                	;0	<<47
+625 222  INIT_FCALL_BY_NAME/59     ?0        ?0                   537:'shell_exec'    	;1
+626 222  INIT_FCALL_BY_NAME/59     ?0        ?0                   539:'escapeshellarg'	;1
+627 222  SEND_VAR_EX/66            ?80       16?19                ?1                  	;0
+628 222  DO_FCALL_BY_NAME/131      $318=     ?0                   ?0                  	;0
+629 222  CONCAT/8                  #319=     541:'sudo mysql xui_migrate < ' $318                	;0
+630 222  SEND_VAL_EX/116           ?80       #319                 ?1                  	;0
+631 222  DO_FCALL_BY_NAME/131      ?300      ?0                   ?0                  	;0
+632 223  ECHO/40                   ?0        542:'If no errors were shown above, restore was completed.
+
+' ?0                  	;0
+633 225  INIT_FCALL_BY_NAME/59     ?0        ?0                   543:'EDA0b738B69cf18F'	;0
+634 225  DO_FCALL_BY_NAME/131      ?301      ?0                   ?0                  	;0
+635 226  GOTO/253                  ?0        ?715                 ?545                	;0
+636 227  GOTO/253                  ?0        ?676                 ?546                	;0
+637 229  INIT_METHOD_CALL/112      ?0        16?2                 547:'query'         	;1
+638 229  SEND_VAL_EX/116           ?80       549:'DROP DATABASE IF EXISTS `xui_migrate`;' ?1                  	;0
+639 229  DO_FCALL/60               ?302      ?0                   ?0                  	;0
+640 230  INIT_METHOD_CALL/112      ?0        16?2                 550:'query'         	;1
+641 230  SEND_VAL_EX/116           ?80       552:'CREATE DATABASE IF NOT EXISTS `xui_migrate`;' ?1                  	;0
+642 230  DO_FCALL/60               ?303      ?0                   ?0                  	;0
+643 231  ECHO/40                   ?0        553:'Migration database has been cleared.
+' ?0                  	;0
+644 232  INIT_FCALL_BY_NAME/59     ?0        ?0                   554:'count'         	;1
+645 232  SEND_VAR_EX/66            ?80       16?0                 ?1                  	;0
+646 232  DO_FCALL_BY_NAME/131      $324=     ?0                   ?0                  	;0
+647 232  IS_EQUAL/17               #325=     $324                 556:3               	;0
+648 232  JMPZ/43                   ?0        #325                 ?652                	;0	>>652
+649 232  FETCH_DIM_R/81            $326=     16?0                 557:2               	;0
+650 232  QM_ASSIGN/22              #327=     $326                 ?0                  	;0
+651 232  JMP/42                    ?0        ?653                 ?0                  	;0	>>653
+652 232  QM_ASSIGN/22              #327=     558:NULL             ?0                  	;0	<<648
+653 232  ASSIGN/38                 ?308      16?19                #327                	;0	<<651
+654 233  JMPZ_EX/46                #329=     16?19                ?659                	;0	>>659
+655 233  INIT_FCALL_BY_NAME/59     ?0        ?0                   559:'file_exists'   	;1
+656 233  SEND_VAR_EX/66            ?80       16?19                ?1                  	;0
+657 233  DO_FCALL_BY_NAME/131      $330=     ?0                   ?0                  	;0
+658 233  BOOL/52                   #329=     $330                 ?0                  	;0
+659 233  JMPZ_EX/46                #329=     #329                 ?666                	;0	>>666	<<654
+660 233  INIT_FCALL_BY_NAME/59     ?0        ?0                   561:'pathinfo'      	;1
+661 233  FETCH_DIM_R/81            $331=     16?19                563:'extension'     	;0
+662 233  IS_EQUAL/17               #332=     $331                 564:'sql'           	;0
+663 233  SEND_VAL_EX/116           ?80       #332                 ?1                  	;0
+664 233  DO_FCALL_BY_NAME/131      $333=     ?0                   ?0                  	;0
+665 233  BOOL/52                   #329=     $333                 ?0                  	;0
+666 233  JMPZ/43                   ?0        #329                 ?668                	;0	>>668	<<659
+667 234  GOTO/253                  ?0        ?672                 ?565                	;0
+668 236  GOTO/253                  ?0        ?669                 ?566                	;0	<<666
+669 238  ECHO/40                   ?0        567:'You can restore a database to it using:
+' ?0                  	;0
+670 239  ECHO/40                   ?0        568:'sudo mysql xui_migrate < backup.sql
+
+' ?0                  	;0
+671 240  GOTO/253                  ?0        ?633                 ?569                	;0
+672 242  CONCAT/8                  #334=     570:'Restoring: '    16?19               	;0
+673 242  CONCAT/8                  #335=     #334                 571:'
+'             	;0
+674 242  ECHO/40                   ?0        #335                 ?0                  	;0
+675 243  GOTO/253                  ?0        ?625                 ?572                	;0
+676 246  INIT_METHOD_CALL/112      ?0        16?2                 573:'query'         	;1	<<49
+677 246  SEND_VAL_EX/116           ?80       575:'TRUNCATE `blocked_ips`;' ?1                  	;0
+678 246  DO_FCALL/60               ?316      ?0                   ?0                  	;0
+679 247  INIT_FCALL_BY_NAME/59     ?0        ?0                   576:'shell_exec'    	;1
+680 247  FETCH_CONSTANT/99         #337=     ?0                   578:'FLOOD_TMP_PATH'	;16
+681 247  CONCAT/8                  #338=     581:'sudo rm '       #337                	;0
+682 247  CONCAT/8                  #339=     #338                 582:'block_*'       	;0
+683 247  SEND_VAL_EX/116           ?80       #339                 ?1                  	;0
+684 247  DO_FCALL_BY_NAME/131      ?320      ?0                   ?0                  	;0
+685 248  INIT_FCALL_BY_NAME/59     ?0        ?0                   583:'shell_exec'    	;1
+686 248  FETCH_CONSTANT/99         #341=     ?0                   585:'BIN_PATH'      	;16
+687 248  CONCAT/8                  #342=     588:'sudo '          #341                	;0
+688 248  CONCAT/8                  #343=     #342                 589:'nginx/sbin/nginx -s reload'	;0
+689 248  SEND_VAL_EX/116           ?80       #343                 ?1                  	;0
+690 248  DO_FCALL_BY_NAME/131      ?324      ?0                   ?0                  	;0
+691 249  INIT_FCALL_BY_NAME/59     ?0        ?0                   590:'shell_exec'    	;1
+692 249  FETCH_CONSTANT/99         #345=     ?0                   592:'BIN_PATH'      	;16
+693 249  CONCAT/8                  #346=     595:'sudo '          #345                	;0
+694 249  CONCAT/8                  #347=     #346                 596:'nginx_rtmp/sbin/nginx_rtmp -s reload'	;0
+695 249  SEND_VAL_EX/116           ?80       #347                 ?1                  	;0
+696 249  DO_FCALL_BY_NAME/131      ?328      ?0                   ?0                  	;0
+697 250  INIT_FCALL_BY_NAME/59     ?0        ?0                   597:'shell_exec'    	;1
+698 250  SEND_VAL_EX/116           ?80       599:'sudo iptables -F && sudo ip6tables -F' ?1                  	;0
+699 250  DO_FCALL_BY_NAME/131      ?329      ?0                   ?0                  	;0
+700 251  INIT_FCALL_BY_NAME/59     ?0        ?0                   600:'shell_exec'    	;1
+701 251  SEND_VAL_EX/116           ?80       602:'sudo iptables-save && sudo ip6tables-save' ?1                  	;0
+702 251  DO_FCALL_BY_NAME/131      ?330      ?0                   ?0                  	;0
+703 252  ECHO/40                   ?0        603:'Blocked IP\'s have been flushed.
+
+' ?0                  	;0
+704 253  GOTO/253                  ?0        ?715                 ?604                	;0
+705 255  ECHO/40                   ?0        605:'Actions
+----------------------------------------------------------------
+' ?0                  	;0	<<50
+706 256  ECHO/40                   ?0        606:'rescue			Create a rescue access code for the admin panel.
+' ?0                  	;0
+707 257  ECHO/40                   ?0        607:'user			Create a rescue admin user for the admin panel.
+' ?0                  	;0
+708 258  ECHO/40                   ?0        608:'mysql			Reauthorise load balancers on MySQL.
+' ?0                  	;0
+709 259  ECHO/40                   ?0        609:'database		Restore blank XUI database.
+' ?0                  	;0
+710 260  ECHO/40                   ?0        610:'migration		Clear migration database.
+' ?0                  	;0
+711 261  ECHO/40                   ?0        611:'flush			Flush blocked IP database.
+' ?0                  	;0
+712 262  ECHO/40                   ?0        612:'ports			Regenerate ports from SQL table.
+' ?0                  	;0
+713 263  ECHO/40                   ?0        613:'access			Regenerate access codes from SQL table.
+
+' ?0                  	;0
+714 264  GOTO/253                  ?0        ?715                 ?614                	;0
+715 268  EXIT/79                   ?0        ?0                   ?0                  	;0
+716 269  NOP/0                     ?0        615:1                ?0                  	;4294967295
+*/
+
+?>
